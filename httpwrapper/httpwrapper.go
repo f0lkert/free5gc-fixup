@@ -62,8 +62,13 @@ func NewHttp2Server(bindAddr string, preMasterSecretLogPath string, handler http
 		Handler: h2c.NewHandler(handler, h2Server),
 	}
 
-	if preMasterSecretLogPath != "" {
-		preMasterSecretFile, err := os.OpenFile(preMasterSecretLogPath, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0o600)
+	path := os.Getenv("SSLKEYLOGFILE")
+	if path == "" {
+		path = preMasterSecretLogPath
+	}
+	
+	if path != "" {
+		preMasterSecretFile, err := os.OpenFile(path, os.O_WRONLY|os.O_CREATE|os.O_APPEND, 0o600)
 		if err != nil {
 			return nil, fmt.Errorf("create pre-master-secret log [%s] fail: %s", preMasterSecretLogPath, err)
 		}
