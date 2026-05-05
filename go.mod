@@ -4,11 +4,11 @@ go 1.25.5
 
 require (
 	github.com/free5gc/openapi v1.2.3
-	github.com/golang-jwt/jwt/v5 v5.3.1
+	github.com/golang-jwt/jwt/v5 v5.2.2
 	github.com/pkg/errors v0.9.1
 	github.com/stretchr/testify v1.9.0
 	golang.org/x/net v0.38.0
-	golang.org/x/oauth2 v0.36.0
+	golang.org/x/oauth2 v0.27.0
 )
 
 require (
